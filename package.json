@@ -4,20 +4,19 @@
   "description": "",
   "scripts": {
     "webpack": "webpack",
-    "start": "webpack-dev-server --hot --inline"
+    "start": "webpack-dev-server --hot --inline --host 0.0.0.0 --port 8080"
   },
   "author": "Axel Rauschmayer",
   "license": "MIT",
   "devDependencies": {
-    "babel-core": "^6.1.21",
-    "babel-preset-es2015": "^6.1.18",
-    "babel-preset-react": "^6.1.18",
-    "babel-loader": "^6.1.0",
-
-    "webpack": "^1.12.6",
-    "copy-webpack-plugin": "^0.2.0",
-    "webpack-dev-server": "^1.12.1",
-    "react-hot-loader": "^1.3.0"
+    "babel-core": "^6.3.13",
+    "babel-loader": "^6.2.0",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
+    "copy-webpack-plugin": "^0.3.3",
+    "react-hot-loader": "^1.3.0",
+    "webpack": "^1.12.9",
+    "webpack-dev-server": "^1.14.0"
   },
   "dependencies": {
     "react": "^0.14.3",
