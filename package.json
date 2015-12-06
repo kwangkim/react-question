@@ -1,12 +1,12 @@
 {
-  "name": "react-starter-project",
+  "name": "react-question-project",
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "webpack": "webpack",
+    "webpack": "webpack --optimize-minimize",
     "start": "webpack-dev-server --hot --inline --host 0.0.0.0 --port 8080"
   },
-  "author": "Axel Rauschmayer",
+  "author": "KWANG KIM",
   "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.3.13",
@@ -19,7 +19,13 @@
     "webpack-dev-server": "^1.14.0"
   },
   "dependencies": {
+    "immutable": "^3.7.5",
     "react": "^0.14.3",
-    "react-dom": "^0.14.3"
+    "react-addons-update": "^0.14.3",
+    "react-bootstrap": "^0.28.1",
+    "react-dom": "^0.14.3",
+    "react-youtube": "^4.1.2",
+    "react-youtube-player": "^0.3.3",
+    "safe-html": "0.0.5"
   }
 }

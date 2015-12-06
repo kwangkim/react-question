@@ -3,11 +3,14 @@
 var path = require('path');
 
 var webpack = require('webpack');
+
+
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 var dir_js = path.resolve(__dirname, 'js');
 var dir_html = path.resolve(__dirname, 'html');
 var dir_build = path.resolve(__dirname, 'build');
+
 
 module.exports = {
     entry: path.resolve(dir_js, 'main.js'),
@@ -39,7 +42,12 @@ module.exports = {
             { from: dir_html } // to: output.path
         ]),
         // Avoid publishing files when compilation fails
-        new webpack.NoErrorsPlugin()
+        new webpack.NoErrorsPlugin(),
+        new webpack.DefinePlugin({
+            "process.env": {
+                NODE_ENV: JSON.stringify("production")
+            }
+        })
     ],
     stats: {
         // Nice colored output

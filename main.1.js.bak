@@ -1,0 +1,294 @@
+import React from "react";
+import {render} from 'react-dom';
+import YoutubePlayer from 'react-youtube-player';
+import { Carousel,CarouselItem,Button,Accordion,Panel,Collapse,Well} from 'react-bootstrap';
+var questions=[
+      {
+          ID:'1',
+          VideoId:'xyAzDCKHcqg',
+          width: '800',
+          height: '600',
+          captiontitle: '1',
+          captiondescription: 'Related Rate'
+      },
+      {
+          ID:'2',
+          VideoId:'PvvKKTQGeg8',
+          width: '800',
+          height: '600',
+          captiontitle: '2',
+          captiondescription: 'Related Rate'
+      },
+      {
+          ID:'3',
+          VideoId:'idI1bVNbmo',
+          width: '800',
+          height: '600',
+          captiontitle: '3',
+          captiondescription: 'Related Rate'
+      },
+      {
+          ID:'4',
+          VideoId:'zqD2r1BgUjA',
+          width: '800',
+          height: '600',
+          captiontitle: '4',
+          captiondescription: 'Related Rate'
+      },
+      {
+          ID:'5',
+          VideoId:'atJaoBHVWfc',
+          width: '800',
+          height: '600',
+          captiontitle: '5',
+          captiondescription: 'Related Rate'
+      },
+];
+class Main extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            clickCount: 0,
+        };
+    }
+    render() {
+        return <div className="container">
+            <div>
+                <a href="" onClick={this.handleClick.bind(this)}>Clicks: {this.state.clickCount}</a>
+            </div>
+            <div>
+                <Show/>
+            </div>
+        </div>;
+    }
+    handleClick(event) {
+        event.preventDefault();
+        this.setState({
+            clickCount: this.state.clickCount + 1,
+        });
+    }
+}
+class Question extends React.Component{
+    constructor (props) {
+        super(props);
+
+        this.state = {
+            playbackState: props.playbackState ||'unstarted',
+        };
+    }
+    
+/*    
+    handleVideoIdChange(event)  {
+        this.setState({
+            videoId: event.target.value
+        });
+    }
+*/
+    handleWidthChange(event)  {
+        this.setState({
+            width: event.target.value
+        });
+    }
+
+    handleHeightChange(event) {
+        this.setState({
+            height: event.target.value
+        });
+    }
+
+    handlePlayVideo() {
+        this.setState({
+            playbackState: 'playing'
+        });
+    }
+
+    handlePauseVideo () {
+        this.setState({
+            playbackState: 'paused'
+        });
+    }
+
+    handleStopVideo ()  {
+        this.setState({
+            playbackState: 'unstarted'
+        });
+    }
+    render(){
+        return(
+            <CarouselItem>
+                <img width={840} height={630}/>
+                <div className="text-center">
+                  <YoutubePlayer
+                    videoId={this.props.videoId}
+                    width={this.props.width}
+                    height={this.props.height}
+                    playbackState={this.state.playbackState}
+                  />
+                </div>
+                <div className="carousel-caption">
+                  <h3>{this.props.captiontitle}</h3>
+                  <p>{this.props.captiondescription}</p>
+                </div>
+            </CarouselItem>    
+        );    
+    }
+    
+}
+/*
+class Quiz extends React.Component{
+    constructor () {
+        super();
+
+        this.state = {
+            oldindex:-1,
+            index: 0,
+            direction: null,
+            playbackState: null,
+        };
+    }
+
+
+    handleSelect(selectedIndex, selectedDirection) {
+        alert("Pause");
+      //alert('selected=' + selectedIndex + ', direction=' + selectedDirection);
+        
+        this.setState({
+            oldindex: index,
+            index: selectedIndex,
+            direction: selectedDirection,
+        });
+    }
+    
+    render() {
+        let oldindex=this.state.oldindex;
+        return (
+        <Carousel activeIndex={this.state.index} direction={this.state.direction} onSelect={this.handleSelect}>
+            {
+                this.props.questions.map(function(question,i){
+                    var playbackState= (i==oldindex) ? 'paused': null; 
+                    return(<Question 
+                        key={question.ID}
+                        VideoId={question.VideoId}
+                        width={question.width}
+                        height={question.height}
+                        captiontitle={question.captiontitle}
+                        captiondescription={question.captiondescription}
+                        playbackState={playbackState}
+                    />);
+                })
+            }
+        </Carousel>
+        );
+    }
+};
+*/
+class Quiz extends React.Component{
+    constructor () {
+        super();
+
+        this.state = {
+            oldindex:-1,
+            index: 0,
+            direction: null,
+            playbackState: null,
+        };
+    }
+
+
+    handleSelect(selectedIndex, selectedDirection) {
+        alert("Pause hello");
+      //alert('selected=' + selectedIndex + ', direction=' + selectedDirection);
+        var index=this.state.index;
+        this.setState({
+            oldindex: index,
+            index: selectedIndex,
+            direction: selectedDirection,
+        });
+    }
+    
+    render() {
+        let oldindex=this.state.oldindex;
+        return (
+            <Carousel activeIndex={this.state.index} direction={this.state.direction} onSelect={this.handleSelect.bind(this)}>
+                <CarouselItem>
+                        <img width={900} height={500} alt="900x500"/>
+                    <div className="carousel-caption">
+                                            <div className="row">
+                            <div className="col-md-2">A</div>
+                            <div className="col-md-8">
+                              <YoutubePlayer
+                                videoId='xyAzDCKHcqg'
+                                playbackState='paused'
+                                width = "640"
+                                height ="480"
+                              />
+                            </div>
+                          <div className="col-md=2">B</div>
+                        </div>
+                    </div>
+                </CarouselItem>
+                <CarouselItem>
+                    <img width={840} height={630}/>
+                    <div className="text-center">
+                      <YoutubePlayer
+                        videoId='PvvKKTQGeg8'
+                        playbackState='paused'
+                        width = '640'
+                        height ='480'
+                      />
+                    </div>
+                    <div className="carousel-caption">
+                      <h3>2</h3>
+                      <p>bye!</p>
+                    </div>
+                </CarouselItem> 
+            </Carousel>
+        );
+    }
+};
+
+class Show extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      open: false
+    };
+  }
+
+  render() {
+    return (
+      <div>
+        <Button bsStyle="primary" onClick={ ()=> this.setState({ open: !this.state.open })}>
+          Answer
+        </Button>
+        <Collapse in={this.state.open}>
+          <div>
+            <Well>
+              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
+              Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+            </Well>
+          </div>
+        </Collapse>
+        <Quiz questions={questions}/>
+      </div>
+    );
+  }
+}
+const accordionInstance = (
+  <Accordion>
+    <Panel bsStyle="primary" header="Collapsible Group Item #1" eventKey="1">
+      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+    </Panel>
+    <Panel header="Collapsible Group Item #2" eventKey="2">
+      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+    </Panel>
+    <Panel header="Collapsible Group Item #3" eventKey="3">
+      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+    </Panel>
+  </Accordion>
+);
+render((
+    <Main/>
+), document.getElementById('main'));
+//render((<Question/>),document.getElementById('question'));
+//render(accordionInstance,document.getElementById('question'));

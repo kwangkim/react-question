@@ -1,0 +1,40 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/home/ubuntu/.nvm/versions/node/v4.2.1/bin/node',
+1 verbose cli   '/home/ubuntu/.nvm/versions/node/v4.2.1/bin/npm',
+1 verbose cli   'run',
+1 verbose cli   'webpack' ]
+2 info using npm@2.14.7
+3 info using node@v4.2.1
+4 verbose run-script [ 'prewebpack', 'webpack', 'postwebpack' ]
+5 info prewebpack react-question-project@1.0.0
+6 info webpack react-question-project@1.0.0
+7 verbose unsafe-perm in lifecycle true
+8 info react-question-project@1.0.0 Failed to exec webpack script
+9 verbose stack Error: react-question-project@1.0.0 webpack: `webpack --optimize-minimize`
+9 verbose stack Exit status 137
+9 verbose stack     at EventEmitter.<anonymous> (/home/ubuntu/.nvm/versions/node/v4.2.1/lib/node_modules/npm/lib/utils/lifecycle.js:214:16)
+9 verbose stack     at emitTwo (events.js:87:13)
+9 verbose stack     at EventEmitter.emit (events.js:172:7)
+9 verbose stack     at ChildProcess.<anonymous> (/home/ubuntu/.nvm/versions/node/v4.2.1/lib/node_modules/npm/lib/utils/spawn.js:24:14)
+9 verbose stack     at emitTwo (events.js:87:13)
+9 verbose stack     at ChildProcess.emit (events.js:172:7)
+9 verbose stack     at maybeClose (internal/child_process.js:818:16)
+9 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:211:5)
+10 verbose pkgid react-question-project@1.0.0
+11 verbose cwd /home/ubuntu/workspace
+12 error Linux 4.2.0-c9
+13 error argv "/home/ubuntu/.nvm/versions/node/v4.2.1/bin/node" "/home/ubuntu/.nvm/versions/node/v4.2.1/bin/npm" "run" "webpack"
+14 error node v4.2.1
+15 error npm  v2.14.7
+16 error code ELIFECYCLE
+17 error react-question-project@1.0.0 webpack: `webpack --optimize-minimize`
+17 error Exit status 137
+18 error Failed at the react-question-project@1.0.0 webpack script 'webpack --optimize-minimize'.
+18 error This is most likely a problem with the react-question-project package,
+18 error not with npm itself.
+18 error Tell the author that this fails on your system:
+18 error     webpack --optimize-minimize
+18 error You can get their info via:
+18 error     npm owner ls react-question-project
+18 error There is likely additional logging output above.
+19 verbose exit [ 1, true ]
