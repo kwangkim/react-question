@@ -38,16 +38,16 @@ module.exports = {
     },
     plugins: [
         // Simply copies the files over
+                new webpack.DefinePlugin({
+            "process.env": {
+                NODE_ENV: JSON.stringify("production")
+            }
+        }),
         new CopyWebpackPlugin([
             { from: dir_html } // to: output.path
         ]),
         // Avoid publishing files when compilation fails
         new webpack.NoErrorsPlugin(),
-        new webpack.DefinePlugin({
-            "process.env": {
-                NODE_ENV: JSON.stringify("production")
-            }
-        })
     ],
     stats: {
         // Nice colored output
