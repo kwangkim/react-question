@@ -3,7 +3,7 @@ import {render} from 'react-dom';
 import YoutubePlayer from 'react-youtube-player';
 import update from 'react-addons-update';
 //import safeHtml from 'safe-html';
-import { Col,Glyphicon,Jumbotron, Row,Button,Collapse} from 'react-bootstrap';
+import { Col,Glyphicon,Jumbotron,Row,Button,Collapse} from 'react-bootstrap';
 var qnas=[
       {
           ID:'1',
@@ -79,9 +79,6 @@ var qnas=[
 class Main extends React.Component {
     constructor() {
         super();
-        this.state = {
-            clickCount: 0,
-        };
     }
     render() {
         return (
@@ -112,6 +109,7 @@ class Tex extends React.Component {
         */
     }
     render() {
+        /*
         var config = {
             allowedTags: ["div", "span", "b", "i", "a"],
             allowedAttributes: {
@@ -127,6 +125,7 @@ class Tex extends React.Component {
                 }
             }
         };
+        */
         //https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement
         var newSpan=document.createElement("span");
         newSpan.innerHTML=this.props.bind;
@@ -187,7 +186,7 @@ class QNA extends React.Component {
     render() {
         var index=this.state.index;
         var {videoId,ID,qtext,atext} = this.props.qnas[index];
-        var len=this.props.qnas.length;
+        //var len=this.props.qnas.length;
         //https://developers.google.com/youtube/player_parameters?playerVersion=HTML5
         return (
             <div className="container">
