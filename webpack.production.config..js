@@ -3,28 +3,31 @@
 var path = require('path');
 var webpack = require('webpack');
 
-
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 var dir_js = path.resolve(__dirname, 'js');
 var dir_html = path.resolve(__dirname, 'html');
 var dir_build = path.resolve(__dirname, 'build');
+var dir_dist = path.resolve(__dirname, 'dist');
 
 module.exports = {
-    entry: path.resolve(dir_js, '441.js'),
+    entry: {
+        app: path.resolve(dir_js, 'main.js'),
+        vendors:['react','react-dom'],
+    },
     output: {
-        path: dir_build,
+        path: dir_dist,
         filename: 'bundle.js'
     },
-    devServer: {
-        contentBase: dir_build,
+    /*
+    resolve: {
+        alias: {
+          'react': pathToReact
+        }
     },
+    */
     module: {
         loaders: [
-            {
-                loader: 'react-hot',
-                test: dir_js,
-            },
             {
                 loader: 'babel-loader',
                 test: dir_js,
@@ -35,7 +38,7 @@ module.exports = {
         ]
     },
     plugins: [
-       // new webpack.DefinePlugin({'process.env.NODE_ENV': JSON.stringify('production')}),
+        new webpack.DefinePlugin({'process.env.NODE_ENV': JSON.stringify('production')}),
         // Simply copies the files over
         new CopyWebpackPlugin([
             { from: dir_html } // to: output.path
