@@ -11,7 +11,8 @@ export default class QNApage extends React.Component {
         var title=this.props.title;
         var backlink=this.props.backlink;
         var backtitle=this.props.backtitle;
-        var qnas=this.props.qnas;
+        var data=this.props.data;
+        console.log(data.length);
         return (
             <div className="container">
                 <Row>
@@ -25,7 +26,7 @@ export default class QNApage extends React.Component {
                     </Col>
                 </Row>
                 <div>
-                    <QNA qnas={qnas}/>
+                    <QNA data={data}/>
                 </div>
             </div>
         );
@@ -55,7 +56,7 @@ class Tex extends React.Component {
 class QNA extends React.Component {
     constructor(props) {
         super(props);
-        var ar=new Array(props.qnas.length).fill(false);
+        var ar=new Array(props.data.length).fill(false);
         this.state = {
             open: ar,
             index:0,
@@ -64,7 +65,7 @@ class QNA extends React.Component {
     }
     left(){
         var index=this.state.index;
-        var len=this.props.qnas.length;
+        var len=this.props.data.length;
         var newindex=index-1;
         if(newindex<0){
             newindex=newindex + len;
@@ -75,7 +76,7 @@ class QNA extends React.Component {
     }
     right(){
         var index=this.state.index;
-        var len=this.props.qnas.length;
+        var len=this.props.data.length;
         var newindex=index+1;
         if(newindex>=len){
             newindex=newindex - len;
@@ -96,8 +97,8 @@ class QNA extends React.Component {
     }
     render() {
         var index=this.state.index;
-        var {videoId,ID,qtext,atext} = this.props.qnas[index];
-        //var len=this.props.qnas.length;
+        var {videoId,ID,qtext,atext} = this.props.data[index];
+        //var len=this.props.data.length;
         //https://developers.google.com/youtube/player_parameters?playerVersion=HTML5
         return (
             <div>

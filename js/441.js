@@ -2,7 +2,7 @@ import QNApage from "./qnapage.js";
 import {render} from 'react-dom';
 import React from "react";
 var mainNode = document.getElementById('main');
-var MA441RelatedRates=[
+var data=[
       {
           ID:'1',
           qtext:'Suppose that an object is moving along the curve below. When it is at \\( (1,2) \\), its \\( x \\)-coordinate is chaning at \\(3.7\\) inches per second. How fast is the \\(y\\)-coordinate changing at that moment?',
@@ -74,4 +74,4 @@ var MA441RelatedRates=[
           videoId:'atJaoBHVWfc',
       },
 ];
-render(<QNApage title="MA441 Related Rates" backtitle="Go back to QCC Math & CS" backlink="http://www.qcc.cuny.edu/MathCS" qnas={MA441RelatedRates}/>, mainNode);
+render(<QNApage title="MA441 Related Rates" backtitle="Go back to QCC Math & CS" backlink="http://www.qcc.cuny.edu/MathCS" data={data}/>, mainNode);
