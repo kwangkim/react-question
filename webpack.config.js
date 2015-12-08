@@ -11,7 +11,7 @@ var dir_html = path.resolve(__dirname, 'html');
 var dir_build = path.resolve(__dirname, 'build');
 
 module.exports = {
-    entry: path.resolve(dir_js, '441.js'),
+    entry: path.resolve(dir_js, '10.js'),
     output: {
         path: dir_build,
         filename: 'bundle.js'
@@ -31,7 +31,7 @@ module.exports = {
                 query: {
                     presets: ['es2015', 'react'],
                 },
-            }
+            },
         ]
     },
     plugins: [
