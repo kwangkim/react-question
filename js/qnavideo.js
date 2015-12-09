@@ -2,7 +2,7 @@ import React from "react";
 import { default as Video} from 'react-html5video';
 import update from 'react-addons-update';
 //import safeHtml from 'safe-html';
-import { Input,Col,Glyphicon,Jumbotron,Row,Button,Collapse} from 'react-bootstrap';
+import {ListGroupItem,ListGroup,Col,Glyphicon,Jumbotron,Row,Button,Collapse} from 'react-bootstrap';
 export default class QNAvideo extends React.Component {
     constructor() {
         super();
@@ -12,20 +12,33 @@ export default class QNAvideo extends React.Component {
         var backlink=this.props.backlink;
         var backtitle=this.props.backtitle;
         var data=this.props.data;
-        console.log(data.length);
+        var SampleA="https://www.cuny.edu/academics/testing/Sample-CEAFE-A.pdf";
+        var SampleB="https://www.cuny.edu/academics/testing/Sample-CEAFE-B.pdf";
         return (
             <div className="container">
                 <Row>
-                    <Col sm={6} md={6} className=" text-left">
+                    <Col xs={12} sm={6} md={6} className=" text-left">
                     <h2>{title}</h2>
                     </Col>
-                    <Col  sm={6} md={6} className="text-right">
+                    <Col xs={12} sm={6} md={6} className="text-right">
                        <a  href={backlink}>
                            <h4 style={{marginTop:30}}> Back to the Math and CS</h4>
                        </a>
                     </Col>
                 </Row>
-                <div>
+                <Row>
+                    <Col xs={6} sm={6} md={6} className="text-left">
+                       <a  href={SampleA}>
+                           <h4>SAMPLE A(PDF)</h4>
+                       </a>
+                    </Col>
+                    <Col xs={6} sm={6} md={6} className="text-right">
+                       <a  href={SampleB}>
+                           <h4>SAMPLE B(PDF)</h4>
+                       </a>
+                    </Col>
+                </Row>
+                <div className="container">
                     <QNAmc data={data}/>
                 </div>
             </div>
@@ -53,17 +66,21 @@ class Tex extends React.Component {
     }
 
 }
-class Correct extends React.Component {
+class Check extends React.Component {
     constructor() {
         super();
     }
     render(){
-        console.log(this.props.correct);
         if(this.props.evaluated){
-            if(this.props.correct) return (<Button bsStyle="primary">Correct</Button>);
-            else return (<Button bsStyle="danger">Incorrect</Button>);
+            if(this.props.correct) return (<Button bsSize="large" bsStyle="primary">Correct</Button>);
+            else return (<Button bsSize="large" bsStyle="danger">Incorrect</Button>);
         }
-        else return (<span></span>);
+        else return (
+            <Button className="text-center" bsSize="large" bsStyle="primary" onClick={ this.props.check}>
+                Check!
+            </Button>
+        
+        );
     }
 }
 class QNAmc extends React.Component {
@@ -74,6 +91,7 @@ class QNAmc extends React.Component {
         var nc =new Array(len).fill(null);
         var no =new Array(len).fill(false);
         var ns =new Array(len).fill(null);
+        var defaultvideoId=props.data[0].videoId;
         this.state = {
             evaluated: ne,
             correct: nc,
@@ -81,6 +99,7 @@ class QNAmc extends React.Component {
             select:ns,
             index:0,
             playing:false,
+            videoId:defaultvideoId,
         };
     }
     left(){
@@ -90,10 +109,12 @@ class QNAmc extends React.Component {
         if(newindex<0){
             newindex=newindex + len;
         }
+        var newvideoId=this.props.data[newindex].videoId;
         this.setState({
             index:newindex,
+            videoId:newvideoId,
         });
-        this.refs.video.pause();
+        
         
     }
     right(){
@@ -103,35 +124,47 @@ class QNAmc extends React.Component {
         if(newindex>=len){
             newindex=newindex - len;
         }
+        var newvideoId=this.props.data[newindex].videoId;
         this.setState({
             index:newindex,
+            videoId:newvideoId,
         });
-        this.refs.video.pause();
+        
+    }
+    reloadVideo(){
+        console.log("reload");
+        this.refs.video.load();
+    }
+    //
+    componentDidUpdate(){
+        this.reloadVideo();
     }
     checkanswer(){
         var index=this.state.index;
         var select=this.state.select[index];
-        var ans=this.props.data[index].ans;
-        console.log(ans);
-        console.log(select);
-        var newevaluated=update(this.state.evaluated,{
-             [index]: {$set: true}          
-        });
-        this.setState({
-            evaluated: newevaluated,
-        });
-        var correct;
-        if (select===ans)correct=true;
-        else correct=false;
-    
-        var newcorrect=update(this.state.evaluated,{
-             [index]: {$set: correct }          
-        });
-        console.log(newcorrect);
-        this.setState({
-            correct: newcorrect,
-        });
-        this.updateopen();
+        var evaluated=this.state.evaluated[index];
+        if(!evaluated){
+            var ans=this.props.data[index].ans;
+            console.log(ans);
+            console.log(select);
+            var newevaluated=update(this.state.evaluated,{
+                 [index]: {$set: true}          
+            });
+            this.setState({
+                evaluated: newevaluated,
+            });
+            var correct;
+            if (select===ans)correct=true;
+            else correct=false;
+        
+            var newcorrect=update(this.state.correct,{
+                 [index]: {$set: correct }          
+            });
+            this.setState({
+                correct: newcorrect,
+            });
+            this.updateopen();
+        }
         
     }
     updateopen(){
@@ -143,7 +176,6 @@ class QNAmc extends React.Component {
         this.setState({
             open: newopen,
         });
-        this.refs.video.pause();
     }
     choiceclass(id){
         var index=this.state.index;
@@ -166,6 +198,7 @@ class QNAmc extends React.Component {
         var index=this.state.index;
         var evaluated=this.state.evaluated[index];
         if(!evaluated){
+            console.log("Choicehandle!");
             var newselect=update(this.state.select,{
                 [index]: {$set: id}          
             });
@@ -175,82 +208,71 @@ class QNAmc extends React.Component {
         }
     }
     render() {
-        var {evaluated,correct,select,open,index,playing}=this.state;
-        var {videoId,ID,qtext,choices,ans} = this.props.data[index];
-        var path='http://media.acc.qcc.cuny.edu/NonDBEvents/MathCS/Videos/';
+        var {index,playing}=this.state;
+        var evaluated=this.state.evaluated[index];
+        var correct=this.state.correct[index];
+        var select=this.state.select[index];
+        var open=this.state.open[index];
+        var {ID,qtext,choices,ans} = this.props.data[index];
+        console.log("videoId");
+        console.log(this.state.videoId);
+        //var path='http://media.acc.qcc.cuny.edu/NonDBEvents/MathCS/Videos/';
+        var path='/videos/';
         var choiceclass=this.choiceclass.bind(this);
-        /*var choiceclass=function(id){
-            console.log("select");
-            console.log(select[index]);
-            console.log(id);
-            console.log(evaluated);
-            if(!evaluated){
-                if(id==select[index]) {
-                    console.log("same");
-                    return 'bg-active' ;   
-                }
-                else return 'bg-warning';
-            }else{
-                
-            }
-                
-        };
-        */
-         var choicehandle=this.choicehandle.bind(this);
+        var choicehandle=this.choicehandle.bind(this);
         //var len=this.props.data.length;
         //https://developers.google.com/youtube/player_parameters?playerVersion=HTML5
+        console.log("correct:");
+        console.log(this.state.correct);
         return (
             <div>
                 <Jumbotron className="jumbotronquiz">
+                    <Row className="text-center">
+                        <Button className="text-center" bsSize="large" bsStyle="primary" onClick={this.left.bind(this)}>
+                            <Glyphicon glyph="triangle-left" />
+                        </Button> 
+                        &nbsp;&nbsp;
+                        <Check className="text-center" check={this.checkanswer.bind(this)}evaluated={this.state.evaluated[this.state.index]} correct={this.state.correct[this.state.index]}/>
+                        &nbsp;&nbsp;
+                        <Button className="text-center" bsSize="large" bsStyle="primary" onClick={ this.right.bind(this)}>
+                            <Glyphicon glyph="triangle-right" />
+                        </Button>
+                    </Row>
                     <Row>
-                        <h2 className="text-center"> Question - {ID}<Correct evaluated={evaluated[index]} correct={correct[index]}/></h2>
+                        <h2 className="text-center"> Question - {ID} </h2>
+                    </Row>
+                    <Row>
+                    &nbsp;
                     </Row>
                     <Row>
                         <p><Tex bind={qtext} /></p>    
                     </Row>
-                     <Row>
+                     <Row className="container">
                         {choices.map(function(choice,i){
                             //var cc=this.choiceclass.bind(this);
                             //var ch=this.choicehandle.bind(this);
                             //<Row key={i} className={choiceclass(choice)}>
                             var choicebound=choicehandle.bind(this,choice.ID);
                             var mark=choice.ID;
-                            if(evaluated[index]){
+                            if(evaluated){
                                if(choice.ID===ans) mark="O";
                                else mark="X";
                             }
                             return(
-                                
                                 <Row key={i} className={choiceclass(choice.ID)} onClick={choicebound}>
-                                        <label >
-                                        <Input style={{visibility:'hidden'}} type="radio" name="mychoice" value={choice.ID} ref={'input'+i}/>
-                                        <p><strong>{mark+' ) '}</strong><Tex bind={choice.ctext}/></p>
-                                    </label>
+                                    <p><strong>{mark+' ) '}</strong><Tex bind={choice.ctext}/></p>
                                 </Row>
                             );
                         })}
                     </Row>
-                    <Row className="text-center">
-                            <Button className="text-center" bsStyle="primary" onClick={this.left.bind(this)}>
-                                <Glyphicon glyph="triangle-left" />
-                            </Button> 
-                            &nbsp;
-                            <Button className="text-center" bsStyle="primary" onClick={ this.checkanswer.bind(this) }>
-                              Answer
-                            </Button>
-                            &nbsp;
-                            <Button className="text-center" bsStyle="primary" onClick={ this.right.bind(this)}>
-                                <Glyphicon glyph="triangle-right" />
-                            </Button>
-                    </Row>
                     <Row>
                     &nbsp;
                     </Row>
-                  <Collapse in={open[index]}>
+                  <Collapse in={open}>
                         <div>
                             <Row className="text-center">
-                                <Video controls ref="video">
-                                    <source src={path+videoId} type="video/mp4" />
+                                <Video preload="auto" controls ref="video" src={path+this.state.videoId}>
+                                    <source src={path+this.state.videoId} type="video/mp4" />
                                 </Video>
                             </Row>
                         </div>
@@ -261,7 +283,12 @@ class QNAmc extends React.Component {
     }
 }
 /*
-
+                                <Row key={i} className={choiceclass(choice.ID)} onClick={choicebound}>
+                                    <label >
+                                        <Input style={{visibility:'hidden'}} type="radio" name="mychoice" value={choice.ID} ref={'input'+i}/>
+                                        <p><strong>{mark+' ) '}</strong><Tex bind={choice.ctext}/></p>
+                                    </label>
+                                </Row>
   
 */
 
