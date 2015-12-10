@@ -12,7 +12,6 @@ export default class QNApage extends React.Component {
         var backlink=this.props.backlink;
         var backtitle=this.props.backtitle;
         var data=this.props.data;
-        console.log(data.length);
         return (
             <div className="container">
                 <Row>

@@ -27,9 +27,9 @@ module.exports = {
             },
             {
                 loader: 'babel-loader',
-                test: dir_js,
+                test: /\.js$/,
                 query: {
-                    presets: ['es2015', 'react'],
+                    presets: ['es2015', 'react','stage-0'],
                 },
             },
         ]

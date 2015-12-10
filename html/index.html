@@ -3,16 +3,25 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <script scr="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>  
+<!--[if lt IE 9]>
+  <script>
+    (function(){
+      var ef = function(){};
+      window.console = window.console || {log:ef,warn:ef,error:ef,dir:ef};
+    }());
+  </script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv-printshiv.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/es5-shim/3.4.0/es5-shim.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/es5-shim/3.4.0/es5-sham.js"></script>
+<![endif]-->
     <title>MA010 - Final Review</title>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
     <link rel="stylesheet" href="ReactHtml5Video.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/contrib/auto-render.min.js"></script>
-    <!--
-    <script src="https://fb.me/react-0.14.3.min.js"></script>
-    <script src="https://fb.me/react-dom-0.14.3.min.js"></script>
-    -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 </head>
 <body>
@@ -40,12 +49,6 @@ html {
 }
 </style>
 <div id="main"></div>
-<script src="bundle.js"></script>
-<script>
-/*
-var mainNode=document.getElementById('main');
-render((< QNApage title="MA441 Related Rates" backtitle="Go back to QCC Math & CS" backlink="http://www.qcc.cuny.edu/MathCS" qnas={MA441RelatedRates}  />), mainNode );
-*/
-</script>
+<script src="MA010-Final-Review-bundle-15121002030.min.js"></script>
 </body>
 </html>

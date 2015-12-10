@@ -13,11 +13,11 @@ var data=[
           {ID:'D',ctext:'\\(12\\sqrt{2}\\)'},
         ],
         ans: 'C',
-        videoId:'Question-1.mp4',
+        videoId:'Question-1A.mp4',
     },
     {
         ID:'2A',
-        qtext:'Simplify Completely. \\[ \\sqrt{5}(\\sqrt{15}+\\sqrt{15})\\]',
+        qtext:'Simplify Completely. \\[ \\sqrt{5}(\\sqrt{15}+\\sqrt{5})\\]',
         choices:[
           {ID:'A',ctext:'\\(5\\sqrt{3}+\\sqrt{5}\\)'},
           {ID:'B',ctext:'\\(25\\sqrt{3}\\)'},
@@ -75,7 +75,7 @@ var data=[
         
         ],
         ans: 'B',
-        videoId:'Question-4.mp4',
+        videoId:'Question-4A.mp4',
     },
     {
         ID:'5A',
@@ -88,7 +88,7 @@ var data=[
         
         ],
         ans: 'B',
-        videoId:'Question-5.mp4',
+        videoId:'Question-5A.mp4',
     },
     {
         ID:'6A',
@@ -100,7 +100,7 @@ var data=[
           {ID:'D',ctext:'\\(2x^3+8x^2-32x+30\\)'},
         ],
         ans: 'A',
-        videoId:'Question-6.mp4',
+        videoId:'Question-6A.mp4',
     },
     {
         ID:'7A',
@@ -112,7 +112,7 @@ var data=[
           {ID:'D',ctext:'\\(-5x^2+7x-1\\)'},
         ],
         ans: 'D',
-        videoId:'Question-7.mp4',
+        videoId:'Question-7A.mp4',
     },
     {
         ID:'8A',
@@ -157,7 +157,7 @@ var data=[
           {ID:'A',ctext:'\\(15=12-2n\\)'},
           {ID:'B',ctext:'\\(15=2(n-12)\\)'},
           {ID:'C',ctext:'\\(15=2n-12\\)'},
-          {ID:'D',ctext:'\\(15=2(112-n)\\)'},
+          {ID:'D',ctext:'\\(15=2(12-n)\\)'},
         ],
         ans: 'C',
         videoId:'Question-11A.mp4',
@@ -296,7 +296,7 @@ var data=[
     },
     {
         ID:'20B',
-        qtext:'Find the graph of the solution to the inequality. \\[5x+3y=-15\\]',
+        qtext:'Find the graph of the solution to the equation. \\[5x+3y=-15\\]',
         choices:[
           {ID:'A',ctext:'<img height="300" src="pics/CEAFE-20B-A.png">'},
           {ID:'B',ctext:'<img height="300" src="pics/CEAFE-20B-B.png">'},
@@ -304,19 +304,31 @@ var data=[
           {ID:'D',ctext:'<img height="300" src="pics/CEAFE-20B-D.png">'},
         ],
         ans: 'D',
-        videoId:'Question-20.mp4',
+        videoId:'Question-20B.mp4',
     },
     {
-        ID:'21B',
-        qtext:'Find the equation of the line passing through the points \\( (-1,7)\\) and \\( (2,-8)\\). Write the equation in slope-intercept form.',
+        ID:'21A',
+        qtext:'Find the equation of the line passing through the points \\( (-2,3)\\) and \\( (1,-3)\\). Write the equation in slope-intercept form.',
         choices:[
-          {ID:'A',ctext:'\\(y=-5x+2\\)'},
-          {ID:'B',ctext:'\\(y=-5x+7\\)'},
-          {ID:'C',ctext:'\\(y=5x+12\\)'},
-          {ID:'D',ctext:'\\(y=-15x-8\\)'},
+          {ID:'A',ctext:'\\(y=-2x+3\\)'},
+          {ID:'B',ctext:'\\(y=2x+7\\)'},
+          {ID:'C',ctext:'\\(y=-6x-9\\)'},
+          {ID:'D',ctext:'\\(y=-2x-1\\)'},
         ],
-        ans: 'A',
-        videoId:'Question-21.mp4',
+        ans: 'D',
+        videoId:'Question-21A.mp4',
+    },
+    {
+        ID:'22A',
+        qtext:'Find the equation of the vertical line passing through the point \\((-5,-2)\\).',
+        choices:[
+          {ID:'A',ctext:'\\(y=x-2\\)'},
+          {ID:'B',ctext:'\\(y=-2\\)'},
+          {ID:'C',ctext:'\\(x=-5\\)'},
+          {ID:'D',ctext:'\\(y=\\frac{2}{5}x-2\\)'},
+        ],
+        ans: 'C',
+        videoId:'Question-22A.mp4',
     },
     {
         ID:'22B',
@@ -328,7 +340,7 @@ var data=[
           {ID:'D',ctext:'\\(y=x+3\\)'},
         ],
         ans: 'C',
-        videoId:'Question-22.mp4',
+        videoId:'Question-22B.mp4',
     },
     {
         ID:'23B',
@@ -340,7 +352,7 @@ var data=[
           {ID:'D',ctext:'\\(slope=-\\frac{7}{6},~and~y-intercept=(0,35)\\)'},
         ],
         ans: 'A',
-        videoId:'Question-23.mp4',
+        videoId:'Question-23B.mp4',
     },
     {
         ID:'24A',
@@ -352,7 +364,7 @@ var data=[
           {ID:'D',ctext:'$40'},
         ],
         ans: 'D',
-        videoId:'Question-24.mp4',
+        videoId:'Question-24A.mp4',
     },
     {
         ID:'25A',

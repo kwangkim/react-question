@@ -1,8 +1,14 @@
 import React from "react";
 import { default as Video} from 'react-html5video';
 import update from 'react-addons-update';
-//import safeHtml from 'safe-html';
 import {ListGroupItem,ListGroup,Col,Glyphicon,Jumbotron,Row,Button,Collapse} from 'react-bootstrap';
+function fillArray(value, len) {
+  var arr = [];
+  for (var i = 0; i < len; i++) {
+    arr.push(value);
+  }
+  return arr;
+}
 export default class QNAvideo extends React.Component {
     constructor() {
         super();
@@ -87,10 +93,10 @@ class QNAmc extends React.Component {
     constructor(props) {
         super(props);
         var len = props.data.length;
-        var ne =new Array(len).fill(false);
-        var nc =new Array(len).fill(null);
-        var no =new Array(len).fill(false);
-        var ns =new Array(len).fill(null);
+        var ne =fillArray(false,len);
+        var nc =fillArray(null,len);
+        var no =fillArray(false,len);;
+        var ns =fillArray(null,len);
         var defaultvideoId=props.data[0].videoId;
         this.state = {
             evaluated: ne,
@@ -132,7 +138,6 @@ class QNAmc extends React.Component {
         
     }
     reloadVideo(){
-        console.log("reload");
         this.refs.video.load();
     }
     //
@@ -145,8 +150,6 @@ class QNAmc extends React.Component {
         var evaluated=this.state.evaluated[index];
         if(!evaluated){
             var ans=this.props.data[index].ans;
-            console.log(ans);
-            console.log(select);
             var newevaluated=update(this.state.evaluated,{
                  [index]: {$set: true}          
             });
@@ -198,7 +201,6 @@ class QNAmc extends React.Component {
         var index=this.state.index;
         var evaluated=this.state.evaluated[index];
         if(!evaluated){
-            console.log("Choicehandle!");
             var newselect=update(this.state.select,{
                 [index]: {$set: id}          
             });
@@ -214,16 +216,13 @@ class QNAmc extends React.Component {
         var select=this.state.select[index];
         var open=this.state.open[index];
         var {ID,qtext,choices,ans} = this.props.data[index];
-        console.log("videoId");
-        console.log(this.state.videoId);
         //var path='http://media.acc.qcc.cuny.edu/NonDBEvents/MathCS/Videos/';
-        var path='/videos/';
+        //var path='/videos/';
+        var path='http://www.qcc.cuny.edu/mathCS/study/MA010/videos/';
         var choiceclass=this.choiceclass.bind(this);
         var choicehandle=this.choicehandle.bind(this);
         //var len=this.props.data.length;
         //https://developers.google.com/youtube/player_parameters?playerVersion=HTML5
-        console.log("correct:");
-        console.log(this.state.correct);
         return (
             <div>
                 <Jumbotron className="jumbotronquiz">
